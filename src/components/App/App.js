@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import './App.css'
 import Login from '../Login/Login'
 import Home from '../Home/Home'
+import handleInitialData from './../../actions/shared'
 
 
 export default connect(mapStateToProps)(class App extends Component {
@@ -13,7 +14,8 @@ export default connect(mapStateToProps)(class App extends Component {
 	}
 
 	componentDidMount() {
-		// this.props.dispatch(handleInitialData())
+		// Get the initial data
+		this.props.dispatch(handleInitialData())
 	}
 
 	render() {
