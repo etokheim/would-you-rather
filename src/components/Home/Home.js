@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import AppBar from '../AppBar/AppBar'
 
 export default class Home extends Component {
 	static propTypes = {
@@ -10,8 +11,8 @@ export default class Home extends Component {
 	render() {
 		return (
 			<div>
-				This is Home
-				<Link to='/login'>Login</Link>
+				<h1>Home</h1>
+				<AppBar />
 			</div>
 		)
 	}

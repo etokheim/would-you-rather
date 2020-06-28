@@ -25,8 +25,8 @@ export default connect(mapStateToProps)(class Login extends Component {
 		const { users } = this.props
 		return (
 			<div>
-				Login page
-				<Link to='/'>Home</Link>
+				<h1>Login</h1>
+				<h3>Select user</h3>
 				{
 					toArray(users).map((user) => (
 						<LoginUserCard user={ user } key={ user.id } handleSetAuthenticatedUser={ this.handleSetAuthenticatedUser } />
