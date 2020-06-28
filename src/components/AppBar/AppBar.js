@@ -4,6 +4,7 @@ import { setAuthenticatedUser } from '../../actions/authenticatedUser'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './appBar.scss'
+import MenuItem from '../MenuItem/MenuItem'
 
 function mapStateToProps({ authenticatedUser, users }) {
 	return {
@@ -39,6 +40,12 @@ export default connect(mapStateToProps)(class AppBar extends Component {
 							Log out
 						</Link>
 					</div> 
+				</div>
+
+				<div className="menu">
+					<MenuItem url="/" title="Home" />
+					<MenuItem url="/leaderboard" title="Leaderboard" />
+					<MenuItem url="/add" title="Ask Question" />
 				</div>
 			</div>
 		)
