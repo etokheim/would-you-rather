@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoginUserCard from '../LoginUserCard/LoginUserCard'
 import toArray from '../../helpers/toArray'
+import { setAuthenticatedUser } from '../../actions/authenticatedUser'
 
 function mapStateToProps({ users }) {
 	return {
@@ -16,6 +17,10 @@ export default connect(mapStateToProps)(class Login extends Component {
 		users: PropTypes.object
 	}
 
+	handleSetAuthenticatedUser = (user) => {
+		this.props.dispatch(setAuthenticatedUser(user.id))
+	}
+
 	render() {
 		const { users } = this.props
 		return (
@@ -24,7 +29,7 @@ export default connect(mapStateToProps)(class Login extends Component {
 				<Link to='/'>Home</Link>
 				{
 					toArray(users).map((user) => (
-						<LoginUserCard user={ user } key={ user.id } />
+						<LoginUserCard user={ user } key={ user.id } handleSetAuthenticatedUser={ this.handleSetAuthenticatedUser } />
 					))
 				}
 			</div>

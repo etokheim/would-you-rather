@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 function LoginUserCard(props) {
-	const { user } = props
+	const { user, handleSetAuthenticatedUser } = props
 	return (
-		<div>
-			{ user.name }
-			{ console.log(user) }
-		</div>
+		<Link to='/' onClick={() => handleSetAuthenticatedUser(user)}>
+			<div>
+				<img src={user.avatarURL} alt='Profile' />
+				{ user.name }
+			</div>
+		</Link>
 	)
 }
 
@@ -20,7 +23,8 @@ LoginUserCard.propTypes = {
 		}).isRequired,
 		avatarURL: PropTypes.string,
 		questions: PropTypes.array
-	}).isRequired
+	}).isRequired,
+	handleSetAuthenticatedUser: PropTypes.func.isRequired
 }
 
 export default LoginUserCard
