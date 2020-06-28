@@ -37,6 +37,16 @@ rules:
     - error
     - tab
 
+  # Single quotes is the standard
+  quotes:
+    - error
+    - single
+  
+  # Doesn't work
+  react/jsx-quotes:
+    - error
+    - prefer-single
+
   # Turn off errors on long lines
   max-len:
     - off
@@ -56,4 +66,7 @@ rules:
 
   # Let us prefix with underscore if we want to
   no-underscore-dangle:
+    - off
+
+  array-bracket-spacing:
     - off
