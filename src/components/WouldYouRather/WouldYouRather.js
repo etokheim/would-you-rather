@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppBar from '../AppBar/AppBar'
 import { connect } from 'react-redux'
+import { handleAnswerQuestion } from '../../actions/questions'
 
 function mapStateToProps(props) {
 	return {
@@ -15,13 +16,17 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 	}
 
 	handleChoose = (option) => {
-		console.log(`Chose option ${option}`);
+		const { match: { params }, questions, authenticatedUser, dispatch } = this.props;
+		const question = questions[params.questionId]
+
+		console.log(`Chose option ${option}`)
+		dispatch(handleAnswerQuestion(question, authenticatedUser, option))
 	}
 
 	render() {
 		const { match: { params }, questions, users } = this.props;
 		const question = questions[params.questionId]
-		const user = users[question.author]
+		const author = users[question.author]
 
 		return (
 			<div>
@@ -35,10 +40,10 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 					</div>
 					<div className="author">
 						<div className="picture">
-							<img src={ user.avatarURL } />
+							<img src={ author.avatarURL } />
 						</div>
 						<div className="name">
-							{ user.name }
+							{ author.name }
 						</div>
 					</div>
 				</div>
