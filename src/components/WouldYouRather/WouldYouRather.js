@@ -20,7 +20,6 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 		const { match: { params }, questions, authenticatedUser, dispatch } = this.props;
 		const question = questions[params.questionId]
 
-		console.log(`Chose option ${option}`)
 		dispatch(handleAnswerQuestion(question, authenticatedUser, option))
 	}
 

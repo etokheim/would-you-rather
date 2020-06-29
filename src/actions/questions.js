@@ -21,7 +21,6 @@ function answerQuestion(questionId, userId, answer) {
 
 export function handleAnswerQuestion(question, userId, option) {
 	return async (dispatch) => {
-		console.log('handleAnswerQuestion', question.id, userId, option)
 		dispatch(answerQuestion(question.id, userId, option))
 
 		let savedQuestion
