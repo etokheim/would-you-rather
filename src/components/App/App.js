@@ -35,18 +35,10 @@ export default connect(mapStateToProps)(class App extends Component {
 					// that need user data.
 					!authenticatedUser ? <Redirect to="/login" /> : (
 						<Switch>
-							<Route exact path='/'>
-								<Home />
-							</Route>
-							<Route exact path='/questions/:question_id'>
-								<WouldYouRather />
-							</Route>
-							<Route exact path='/add'>
-								<NewQuestion />
-							</Route>
-							<Route exact path='/leaderboard'>
-								<Leaderboard />
-							</Route>
+							<Route exact path='/' component={ Home } />
+							<Route exact path='/questions/:questionId' component={ WouldYouRather } />
+							<Route exact path='/add' component={ NewQuestion } />
+							<Route exact path='/leaderboard' component={ Leaderboard } />
 						</Switch>
 					)
 				}

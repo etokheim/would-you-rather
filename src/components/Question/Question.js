@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './question.scss'
+import { Link } from 'react-router-dom'
 
 function Question(props) {
 	const { question } = props
@@ -10,15 +11,17 @@ function Question(props) {
 	} = question
 
 	return (
-		<div className='question'>
-			<div className='title'>
-				{/* TODO: Display the name instead of username */}
-				{ `${author} asks:` }
+		<Link to={`/questions/${question.id}`}>
+			<div className='question'>
+				<div className='title'>
+					{/* TODO: Display the name instead of username */}
+					{ `${author} asks:` }
+				</div>
+				<div className='body'>
+					{ optionOne.text }
+				</div>
 			</div>
-			<div className='body'>
-				{ optionOne.text }
-			</div>
-		</div>
+		</Link>
 	)
 }
 
