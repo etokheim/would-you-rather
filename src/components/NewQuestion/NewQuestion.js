@@ -26,16 +26,13 @@ export default connect(mapStateToProps)(class NewQuestion extends Component {
 
 	handleSubmitQuestion = (event) => {
 		const { optionOneText, optionTwoText } = this.state
-		const { users, authenticatedUser } = this.props
+		const { users, authenticatedUser, history } = this.props
 		const user = users[authenticatedUser]
 
 		this.props.dispatch(handleAskQuestion(optionOneText, optionTwoText, user.id))
 		
-		// Clear the text areas
-		this.setState({
-			optionOneText: "",
-			optionTwoText: ""
-		})
+		// Go to the home page
+		history.push("/")
 	}
 
 	render() {
