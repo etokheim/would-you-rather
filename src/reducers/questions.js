@@ -14,13 +14,13 @@ export default function user(state = {}, action) {
 					...state[action.questionId],
 					optionOne: {
 						...state[action.questionId].optionOne,
-						votes: action.answer === 0
+						votes: action.answer === 'optionOne'
 							? state[action.questionId].optionOne.votes.concat(action.userId)
 							: state[action.questionId].optionOne.votes.filter((vote) => vote !== action.userId)
 					},
 					optionTwo: {
 						...state[action.questionId].optionTwo,
-						votes: action.answer === 1
+						votes: action.answer === 'optionTwo'
 							? state[action.questionId].optionTwo.votes.concat(action.userId)
 							: state[action.questionId].optionTwo.votes.filter((vote) => vote !== action.userId)
 					}

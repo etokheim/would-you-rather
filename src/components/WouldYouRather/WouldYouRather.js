@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import AppBar from '../AppBar/AppBar'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../../actions/questions'
-import authenticatedUser from '../../reducers/authenticatedUser'
 
 function mapStateToProps(props) {
 	return {
@@ -28,25 +27,25 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 		const question = questions[params.questionId]
 		const author = users[question.author]
 
-		// If optionOne contains user, she answered question 0
-		// else if optionTwo contains user, she answered question 1
+		// If optionOne contains user, she answered optionOne
+		// else if optionTwo contains user, she answered optionTwo
 		const answeredQuestion = question.optionOne.votes.find((vote) => vote === authenticatedUser)
-								? 0
+								? "optionOne"
 								: question.optionTwo.votes.find((vote) => vote === authenticatedUser)
-									? 1
+									? "optionTwo"
 									: undefined
 
 		return (
 			<div>
 				Would you rather
 				<div className="wouldYouRather">
-					<div className="option" onClick={ () => this.handleChoose(0)}>
-						<span style={{ color: answeredQuestion === 0 ? "green" : "" }}>
+					<div className="option" onClick={ () => this.handleChoose("optionOne")}>
+						<span style={{ color: answeredQuestion === "optionOne" ? "green" : "" }}>
 							{ question.optionOne.text }
 						</span>
 					</div>
-					<div className="option" onClick={ () => this.handleChoose(1)}>
-						<span style={{ color: answeredQuestion === 1 ? "green" : "" }}>
+					<div className="option" onClick={ () => this.handleChoose("optionTwo")}>
+						<span style={{ color: answeredQuestion === "optionTwo" ? "green" : "" }}>
 							{ question.optionTwo.text }
 						</span>
 					</div>
