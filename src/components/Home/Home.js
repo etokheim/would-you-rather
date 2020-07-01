@@ -13,9 +13,9 @@ function mapStateToProps({ questions, authenticatedUser, users }) {
 
 export default connect(mapStateToProps)(class Home extends Component {
 	static propTypes = {
-		questions: PropTypes.shape({
-			author: PropTypes.string
-		})
+		questions: PropTypes.object.isRequired,
+		authenticatedUser: PropTypes.string.isRequired,
+		users: PropTypes.object.isRequired
 	}
 
 	state = {

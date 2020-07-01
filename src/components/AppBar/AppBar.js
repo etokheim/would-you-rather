@@ -16,9 +16,7 @@ function mapStateToProps({ authenticatedUser, users }) {
 export default connect(mapStateToProps)(class AppBar extends Component {
 	static propTypes = {
 		authenticatedUser: PropTypes.string.isRequired,
-		users: PropTypes.shape({
-			name: PropTypes.object
-		}).isRequired
+		users: PropTypes.object.isRequired
 	}
 
 	state = {

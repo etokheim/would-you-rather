@@ -19,7 +19,7 @@ function mapStateToProps({ authenticatedUser }) {
 
 export default connect(mapStateToProps)(class App extends Component {
 	static propTypes = {
-		// prop: PropTypes
+		authenticatedUser: PropTypes.string
 	}
 
 	componentDidMount() {

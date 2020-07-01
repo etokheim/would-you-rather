@@ -8,7 +8,8 @@ const mapStateToProps = ({ users, authenticatedUser }) => { return { users, auth
 
 export default connect(mapStateToProps)(class NewQuestion extends Component {
 	static propTypes = {
-		users: PropTypes.object.isRequired
+		users: PropTypes.object.isRequired,
+		authenticatedUser: PropTypes.string.isRequired
 	}
 
 	state = {

@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom'
 
 function Question(props) {
 	const { question } = props
-
-	const {
-		author, optionOne
-	} = question
+	const { author, optionOne } = question
 
 	return (
 		<Link to={`/questions/${question.id}`}>
