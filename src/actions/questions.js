@@ -2,6 +2,7 @@ import { _saveQuestion } from '../api/_DATA'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
+export const ASK_QUESTION = 'ASK_QUESTION'
 
 export function receiveQuestions(questions) {
 	return {
@@ -30,6 +31,37 @@ export function handleAnswerQuestion(question, userId, option) {
 		} catch (error) {
 			// TODO: Revert the local state if error on save
 			console.warn('Error while saving question:', error)
+		}
+
+		return savedQuestion
+	}
+}
+
+export function askQuestion(question, userId) {
+	return {
+		type: ASK_QUESTION,
+		question,
+		userId
+	}
+}
+
+export function handleAskQuestion(optionOneText, optionTwoText, userId) {
+	return async (dispatch) => {
+		const question = {
+			author: userId,
+			optionOneText,
+			optionTwoText
+		}
+
+		let savedQuestion
+
+		try {
+			savedQuestion = await _saveQuestion(question)
+		} catch (error) {
+			// TODO: Revert the local state if error on save
+			console.warn('Error while saving question:', error)
+		} finally {
+			dispatch(askQuestion(savedQuestion, userId))
 		}
 
 		return savedQuestion

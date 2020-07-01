@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, ANSWER_QUESTION } from '../actions/questions'
+import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ASK_QUESTION } from '../actions/questions'
 
 export default function user(state = {}, action) {
 	switch (action.type) {
@@ -24,6 +24,13 @@ export default function user(state = {}, action) {
 							? state[action.questionId].optionTwo.votes.concat(action.userId)
 							: state[action.questionId].optionTwo.votes.filter((vote) => vote !== action.userId)
 					}
+				}
+			}
+		case ASK_QUESTION:
+			return {
+				...state,
+				[action.question.id]: {
+					...action.question
 				}
 			}
 		default:

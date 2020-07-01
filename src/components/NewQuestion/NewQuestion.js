@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppBar from '../AppBar/AppBar'
 import { connect } from 'react-redux'
+import { handleAskQuestion } from '../../actions/questions'
 
-const mapStateToProps = ({ }) => { return { } }
+const mapStateToProps = ({ users, authenticatedUser }) => { return { users, authenticatedUser } }
 
 export default connect(mapStateToProps)(class NewQuestion extends Component {
 	static propTypes = {
-		prop: PropTypes
+		users: PropTypes.object.isRequired
 	}
 
 	state = {
@@ -23,11 +24,12 @@ export default connect(mapStateToProps)(class NewQuestion extends Component {
 		})
 	}
 
-	handleAskQuestion = (event) => {
-		event.preventDefault()
-		console.log("Clicked button");
+	handleSubmitQuestion = (event) => {
+		const { optionOneText, optionTwoText } = this.state
+		const { users, authenticatedUser } = this.props
+		const user = users[authenticatedUser]
 
-		// this.props.dispatch()
+		this.props.dispatch(handleAskQuestion(optionOneText, optionTwoText, user.id))
 	}
 
 	render() {
@@ -36,7 +38,7 @@ export default connect(mapStateToProps)(class NewQuestion extends Component {
 				<h1>New Question</h1>
 				<textarea onChange={ (event) => this.handleInput(event, "optionOneText") } />
 				<textarea onChange={ (event) => this.handleInput(event, "optionTwoText") } />
-				<button type="submit" onClick={ this.handleAskQuestion }>Ask question</button>
+				<button type="submit" onClick={ this.handleSubmitQuestion }>Ask question</button>
 				<AppBar />
 			</div>
 		)
