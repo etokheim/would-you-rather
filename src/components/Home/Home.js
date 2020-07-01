@@ -30,11 +30,8 @@ export default connect(mapStateToProps)(class Home extends Component {
 	}
 
 	render() {
-		const { answeredQuestions, newQuestions, filter, user } = this.state
+		const { filter, user } = this.state
 		const questions = toArray(this.props.questions)
-
-		// Display the questions corresponding to the filter state
-		// const questions = filter === "new" ? newQuestions : answeredQuestions
 
 		return (
 			<div>
