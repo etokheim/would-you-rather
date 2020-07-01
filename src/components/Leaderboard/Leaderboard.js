@@ -12,14 +12,20 @@ export default connect(mapStateToProps)(class Leaderboard extends Component {
 		users: PropTypes.object
 	}
 
+	calculateScore = (answered, asked) => {
+		// Let's make asking questions worth three times as much as answering
+		return answered * 100 + asked * 300
+	}
+
 	render() {
 		const { users } = this.props
+		const sortedUsers = toArray(users).sort((a, b) => this.calculateScore(toArray(a.answers).length, a.questions.length) - this.calculateScore(toArray(b.answers).length, b.questions.length)).reverse()
 
 		return (
 			<div>
 				<h1>Leaderboard</h1>
 				<div className="leaderboard">
-					{ toArray(users).map((user) => (
+					{ sortedUsers.map((user) => (
 						<LeaderboardItem user={ user } key={ user.id } />
 					)) }
 				</div>
