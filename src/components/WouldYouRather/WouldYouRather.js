@@ -93,7 +93,7 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 								</div>
 								<div className="author">
 									<div className="picture">
-										<img src={ author.avatarURL } />
+										<img alt="Profile" src={ author.avatarURL } />
 									</div>
 									<div className="name">
 										{ author.name }
