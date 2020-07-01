@@ -15,15 +15,13 @@ function LeaderboardItem(props) {
 				<div className='statisticsContainer'>
 					<div className='answered'>
 						<div className='counter'>
-							💬
-							{' '}
+							<span role='img' aria-label='answered questions'>💬 </span>
 							{ answers.length }
 						</div>
 					</div>
 					<div className='asked'>
 						<div className='counter'>
-							❔
-							{' '}
+							<span role='img' aria-label='Asked questions'>❔ </span>
 							{ user.questions.length }
 						</div>
 					</div>
