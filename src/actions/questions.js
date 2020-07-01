@@ -1,4 +1,4 @@
-import { _saveQuestion } from '../api/_DATA'
+import { _saveQuestion, _saveQuestionAnswer } from '../api/_DATA'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
@@ -24,10 +24,16 @@ export function handleAnswerQuestion(question, userId, option) {
 	return async (dispatch) => {
 		dispatch(answerQuestion(question.id, userId, option))
 
+		console.log(question.id, userId, option)
+
 		let savedQuestion
 
 		try {
-			savedQuestion = await _saveQuestion(question)
+			savedQuestion = await _saveQuestionAnswer({
+				authedUser: userId,
+				qid: question.id,
+				answer: option
+			})
 		} catch (error) {
 			// TODO: Revert the local state if error on save
 			console.warn('Error while saving question:', error)
