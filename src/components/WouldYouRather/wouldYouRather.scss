@@ -1,0 +1,29 @@
+.option {
+	font-size: 1.25rem;
+	padding: 1rem 0;
+	cursor: pointer;
+
+	.statistics {
+		position: absolute;
+		font-size: 0.75rem;
+		opacity: 0.75;
+	}
+}
+
+.author {
+	margin-top: 2rem;
+	display: flex;
+	align-items: center;
+
+	.picture img {
+		width: 2rem;
+		height: 2rem;
+		overflow: hidden;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	.name {
+		margin-left: 0.5rem;
+	}
+}
