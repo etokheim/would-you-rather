@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import AppBar from '../AppBar/AppBar'
 import toArray from '../../helpers/toArray'
 import Question from '../Question/Question'
-import user from '../../reducers/users'
 
 function mapStateToProps({ questions, authenticatedUser, users }) {
 	return {
@@ -55,6 +53,8 @@ export default connect(mapStateToProps)(class Home extends Component {
 								? !question.optionOne.votes.concat(question.optionTwo.votes).includes(user.id)
 								: question.optionOne.votes.concat(question.optionTwo.votes).includes(user.id)
 							)
+								// sort by most recent questions first
+								.sort((a, b) => b.timestamp - a.timestamp)
 								.map((question) => (
 									<Question question={ question } key={ question.id } />
 								))
