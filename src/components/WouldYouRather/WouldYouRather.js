@@ -15,17 +15,24 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 		prop: PropTypes
 	}
 
+	state = {
+		answeredQuestion: undefined
+	}
+
 	handleChoose = (option) => {
 		const { match: { params }, questions, authenticatedUser, dispatch } = this.props;
 		const question = questions[params.questionId]
 
+		this.setState({
+			answeredQuestion: option
+		})
+
 		dispatch(handleAnswerQuestion(question, authenticatedUser, option))
 	}
 
-	render() {
-		const { match: { params }, questions, users, authenticatedUser } = this.props;
+	componentDidMount() {
+		const { match: { params }, questions, authenticatedUser } = this.props;
 		const question = questions[params.questionId]
-		const author = users[question.author]
 
 		// If optionOne contains user, she answered optionOne
 		// else if optionTwo contains user, she answered optionTwo
@@ -34,6 +41,17 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 								: question.optionTwo.votes.find((vote) => vote === authenticatedUser)
 									? "optionTwo"
 									: undefined
+
+		this.setState({
+			answeredQuestion
+		})
+	}
+
+	render() {
+		const { match: { params }, questions, users, authenticatedUser } = this.props;
+		const question = questions[params.questionId]
+		const author = users[question.author]
+		const { answeredQuestion } = this.state
 
 		return (
 			<div>
