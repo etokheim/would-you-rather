@@ -9,6 +9,7 @@ import WouldYouRather from '../WouldYouRather/WouldYouRather'
 import NewQuestion from '../NewQuestion/NewQuestion'
 import Leaderboard from '../Leaderboard/Leaderboard'
 import handleInitialData from './../../actions/shared'
+import NotFound from '../404/NotFound'
 
 function mapStateToProps({ authenticatedUser }) {
 	return {
@@ -39,6 +40,7 @@ export default connect(mapStateToProps)(class App extends Component {
 							<Route exact path='/questions/:questionId' component={ WouldYouRather } />
 							<Route exact path='/add' component={ NewQuestion } />
 							<Route exact path='/leaderboard' component={ Leaderboard } />
+							<Route exact path='/404' component={ NotFound } />
 						</Switch>
 					)
 				}

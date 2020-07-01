@@ -4,6 +4,7 @@ import AppBar from '../AppBar/AppBar'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../../actions/questions'
 import './wouldYouRather.scss'
+import { Redirect } from 'react-router-dom'
 
 function mapStateToProps(props) {
 	return {
@@ -58,41 +59,51 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 		const totalVotes = optionOneVotes + optionTwoVotes
 
 		return (
-			<div>
-				<h1>Would you rather</h1>
-				<div className="wouldYouRather">
-					<div className="option" onClick={ () => this.handleChoose("optionOne")}>
-						<div style={{ color: answeredQuestion === "optionOne" ? "green" : "" }}>
-							{ question.optionOne.text }
-						</div>
-						{ answeredQuestion ? (
-							<div className="statistics">
-								{ `${ Math.round((100 / totalVotes) * optionOneVotes) }% voted for this answer (${ optionOneVotes }/${ totalVotes })` }
+			<>
+				{
+					// If the question doesn't exist, then redirect to the 404 page
+					!question ? (
+						<Redirect to="/404" />
+					) : (
+						<div>
+							<h1>Would you rather</h1>
+							<div className="wouldYouRather">
+								<div className="option" onClick={ () => this.handleChoose("optionOne")}>
+									<div style={{ color: answeredQuestion === "optionOne" ? "green" : "" }}>
+										{ question.optionOne.text }
+									</div>
+									{ answeredQuestion ? (
+										<div className="statistics">
+											{ `${ Math.round((100 / totalVotes) * optionOneVotes) }% voted for this answer (${ optionOneVotes }/${ totalVotes })` }
+										</div>
+									) : "" }
+								</div>
+								<div className="option" onClick={ () => this.handleChoose("optionTwo")}>
+									<div style={{ color: answeredQuestion === "optionTwo" ? "green" : "" }}>
+										{ question.optionTwo.text }
+									</div>
+									{ answeredQuestion ? (
+										<div className="statistics">
+											{ `${ Math.round((100 / totalVotes) * optionTwoVotes) }% voted for this answer (${ optionTwoVotes }/${ totalVotes })` }
+										</div>
+									) : "" }
+								</div>
+								<div className="author">
+									<div className="picture">
+										<img src={ author.avatarURL } />
+									</div>
+									<div className="name">
+										{ author.name }
+									</div>
+								</div>
 							</div>
-						) : "" }
-					</div>
-					<div className="option" onClick={ () => this.handleChoose("optionTwo")}>
-						<div style={{ color: answeredQuestion === "optionTwo" ? "green" : "" }}>
-							{ question.optionTwo.text }
+							
+							<AppBar />
 						</div>
-						{ answeredQuestion ? (
-							<div className="statistics">
-								{ `${ Math.round((100 / totalVotes) * optionTwoVotes) }% voted for this answer (${ optionTwoVotes }/${ totalVotes })` }
-							</div>
-						) : "" }
-					</div>
-					<div className="author">
-						<div className="picture">
-							<img src={ author.avatarURL } />
-						</div>
-						<div className="name">
-							{ author.name }
-						</div>
-					</div>
-				</div>
-				
-				<AppBar />
-			</div>
+					)
+				}
+			</>
+			
 		)
 	}
 })
