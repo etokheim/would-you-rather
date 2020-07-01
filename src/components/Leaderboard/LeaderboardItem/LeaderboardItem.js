@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import toArray from '../../../helpers/toArray'
+import './leaderboardItem.scss'
 
 function LeaderboardItem(props) {
 	const { user, calculateScore } = props
@@ -9,21 +10,23 @@ function LeaderboardItem(props) {
 	return (
 		<div className='leaderboardItem'>
 			<img src={user.avatarURL} className='profile' alt='profile' />
-			<h3>{ user.name }</h3>
-			<div className='answered'>
-				<div className='title'>
-					Answered
-				</div>
-				<div className='counter'>
-					{ answers.length }
-				</div>
-			</div>
-			<div className='asked'>
-				<div className='title'>
-					Asked
-				</div>
-				<div className='counter'>
-					{ user.questions.length }
+			<div className='nameAndStatistics'>
+				<h3 className='name'>{ user.name }</h3>
+				<div className='statisticsContainer'>
+					<div className='answered'>
+						<div className='counter'>
+							💬
+							{' '}
+							{ answers.length }
+						</div>
+					</div>
+					<div className='asked'>
+						<div className='counter'>
+							❔
+							{' '}
+							{ user.questions.length }
+						</div>
+					</div>
 				</div>
 			</div>
 			<div className='score'>
