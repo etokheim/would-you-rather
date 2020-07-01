@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import toArray from '../../../helpers/toArray'
 
 function LeaderboardItem(props) {
-	const { user } = props
+	const { user, calculateScore } = props
 	const answers = toArray(user.answers)
 
 	return (
@@ -31,7 +31,7 @@ function LeaderboardItem(props) {
 					Score
 				</div>
 				<div className='counter'>
-					{ user.questions.length * 100 + answers.length * 300 }
+					{ calculateScore(answers.length, user.questions.length) }
 				</div>
 			</div>
 		</div>
@@ -39,7 +39,8 @@ function LeaderboardItem(props) {
 }
 
 LeaderboardItem.propTypes = {
-	user: PropTypes.object.isRequired
+	user: PropTypes.object.isRequired,
+	calculateScore: PropTypes.func.isRequired
 }
 
 export default LeaderboardItem

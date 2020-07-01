@@ -26,7 +26,7 @@ export default connect(mapStateToProps)(class Leaderboard extends Component {
 				<h1>Leaderboard</h1>
 				<div className="leaderboard">
 					{ sortedUsers.map((user) => (
-						<LeaderboardItem user={ user } key={ user.id } />
+						<LeaderboardItem user={ user } key={ user.id } calculateScore={ this.calculateScore } />
 					)) }
 				</div>
 				<AppBar />
