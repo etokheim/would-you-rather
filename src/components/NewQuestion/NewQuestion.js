@@ -36,8 +36,10 @@ export default connect(mapStateToProps)(class NewQuestion extends Component {
 		return (
 			<div>
 				<h1>New Question</h1>
-				<textarea onChange={ (event) => this.handleInput(event, "optionOneText") } />
-				<textarea onChange={ (event) => this.handleInput(event, "optionTwoText") } />
+				<h3>Would you rather</h3>
+				<textarea onChange={ (event) => this.handleInput(event, "optionOneText") } /><br />
+				<p>or</p>
+				<textarea onChange={ (event) => this.handleInput(event, "optionTwoText") } /><br />
 				<button type="submit" onClick={ this.handleSubmitQuestion }>Ask question</button>
 				<AppBar />
 			</div>
