@@ -30,16 +30,23 @@ export default connect(mapStateToProps)(class NewQuestion extends Component {
 		const user = users[authenticatedUser]
 
 		this.props.dispatch(handleAskQuestion(optionOneText, optionTwoText, user.id))
+		
+		// Clear the text areas
+		this.setState({
+			optionOneText: "",
+			optionTwoText: ""
+		})
 	}
 
 	render() {
+		const { optionOneText, optionTwoText } = this.state
 		return (
 			<div>
 				<h1>New Question</h1>
 				<h3>Would you rather</h3>
-				<textarea onChange={ (event) => this.handleInput(event, "optionOneText") } /><br />
+				<textarea onChange={ (event) => this.handleInput(event, "optionOneText") } value={ optionOneText} /><br />
 				<p>or</p>
-				<textarea onChange={ (event) => this.handleInput(event, "optionTwoText") } /><br />
+				<textarea onChange={ (event) => this.handleInput(event, "optionTwoText") } value={ optionTwoText} /><br />
 				<button type="submit" onClick={ this.handleSubmitQuestion }>Ask question</button>
 				<AppBar />
 			</div>
