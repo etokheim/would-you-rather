@@ -6,15 +6,18 @@ import { handleAnswerQuestion } from '../../actions/questions'
 import './wouldYouRather.scss'
 import { Redirect } from 'react-router-dom'
 
-function mapStateToProps(props) {
+function mapStateToProps({ questions, authenticatedUser, dispatch, users }) {
 	return {
-		...props
+		questions, authenticatedUser, dispatch, users
 	}
 }
 
 export default connect(mapStateToProps)(class WouldYouRather extends Component {
 	static propTypes = {
-		prop: PropTypes
+		questions: PropTypes.object.isRequired,
+		authenticatedUser: PropTypes.string.isRequired,
+		dispatch: PropTypes.func.isRequired,
+		users: PropTypes.object.isRequired
 	}
 
 	state = {
