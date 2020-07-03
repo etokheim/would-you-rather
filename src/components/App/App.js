@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
 import PropTypes from 'prop-types'
-import './App.css'
+import './App.scss'
 import Login from '../Login/Login'
 import Home from '../Home/Home'
 import WouldYouRather from '../WouldYouRather/WouldYouRather'
@@ -17,6 +18,8 @@ function mapStateToProps({ authenticatedUser }) {
 	}
 }
 
+const history = createBrowserHistory()
+
 export default connect(mapStateToProps)(class App extends Component {
 	static propTypes = {
 		authenticatedUser: PropTypes.string
@@ -29,8 +32,10 @@ export default connect(mapStateToProps)(class App extends Component {
 
 	render() {
 		const { authenticatedUser } = this.props
+
 		return (
-			<BrowserRouter>
+			<BrowserRouter history={ history }>
+				History is: { JSON.stringify(history) }
 				{
 					// Redirect to login page if the user hasn't logged in, else we can render stuff
 					// that need user data.
@@ -40,14 +45,12 @@ export default connect(mapStateToProps)(class App extends Component {
 							<Route exact path='/questions/:questionId' component={ WouldYouRather } />
 							<Route exact path='/add' component={ NewQuestion } />
 							<Route exact path='/leaderboard' component={ Leaderboard } />
-							<Route exact path='/404' component={ NotFound } />
 						</Switch>
 					)
 				}
 
-				<Route path='/login'>
-					<Login />
-				</Route>
+				<Route exact path='/login' component={ Login } />
+				<Route exact path='/404' component={ NotFound } />
 			</BrowserRouter>
 		)
 	}
