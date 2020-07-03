@@ -43,7 +43,7 @@ rules:
     - single
   
   # Doesn't work
-  react/jsx-quotes:
+  jsx-quotes:
     - error
     - prefer-single
 
