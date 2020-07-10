@@ -4,19 +4,17 @@ import './index.css'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
 import App from './components/App/App'
 import * as serviceWorker from './serviceWorker'
 import reducer from './reducers'
 import middleware from './middleware'
 
 const store = createStore(reducer, middleware)
-const history = createBrowserHistory()
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<BrowserRouter history={history}>
+			<BrowserRouter>
 				<App />
 			</BrowserRouter>
 		</Provider>
