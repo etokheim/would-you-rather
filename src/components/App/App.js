@@ -21,31 +21,35 @@ export default connect(mapStateToProps)(withRouter(({ dispatch, authenticatedUse
 		dispatch(handleInitialData())
 	})
 
-	return (
-		<>
-			{
-				// Redirect to login page if the user hasn't logged in, else we can render stuff
-				// that need user data.
-				!authenticatedUser && location.pathname !== '/login' ? (
-					<Redirect to={{
+	if (!authenticatedUser) {
+		// Redirect to login page if the user hasn't logged in
+		if (location.pathname !== '/login') {
+			return (
+				<Redirect
+					to={{
 						pathname: '/login',
 						state: {
 							redirectedFrom: location.pathname
 						}
 					}}
-					/>
-				) : (
-					<Switch>
-						<Route exact path='/' component={Home} />
-						<Route exact path='/questions/:questionId' component={WouldYouRather} />
-						<Route exact path='/add' component={NewQuestion} />
-						<Route exact path='/leaderboard' component={Leaderboard} />
-					</Switch>
-				)
-			}
+				/>
+			)
+		}
 
+		// Display the login page if no user is logged in
+		return (
 			<Route exact path='/login' component={Login} />
+		)
+	}
+
+	// Else, the user has logged in and we can display components that need user data
+	return (
+		<Switch>
+			<Route exact path='/' component={Home} />
+			<Route exact path='/questions/:questionId' component={WouldYouRather} />
+			<Route exact path='/add' component={NewQuestion} />
+			<Route exact path='/leaderboard' component={Leaderboard} />
 			<Route exact path='/404' component={NotFound} />
-		</>
+		</Switch>
 	)
 }))
