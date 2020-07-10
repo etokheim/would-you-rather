@@ -1,7 +1,7 @@
 import { RECEIVE_USERS } from '../actions/users'
 import { ANSWER_QUESTION, ASK_QUESTION } from '../actions/questions'
 
-export default function user(state = {}, action) {
+export default (state = {}, action) => {
 	switch (action.type) {
 		case RECEIVE_USERS:
 			return {
