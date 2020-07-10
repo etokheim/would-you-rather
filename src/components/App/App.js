@@ -49,15 +49,11 @@ export default connect(mapStateToProps)(withRouter(({ dispatch, authenticatedUse
 			<Route exact path='/questions/:questionId' component={WouldYouRather} />
 			<Route exact path='/add' component={NewQuestion} />
 			<Route exact path='/leaderboard' component={Leaderboard} />
-			<Route exact path='/404' component={NotFound} />
 
-			{/*
-				Redirect to home if a logged in user visits the login page.
-				This can happen if the user logs in and hits the back button.
-			*/}
-			<Route exact path='/login'>
-				<Redirect to='/' />
-			</Route>
+				{/* <Route exact path='/login' component={Login} /> */}
+
+				{/* If no match, render the 404 page */}
+				<Route component={NotFound} />
 		</Switch>
 	)
 }))
