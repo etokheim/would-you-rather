@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import AppBar from '../AppBar/AppBar'
 import toArray from '../../helpers/toArray'
 import LeaderboardItem from './LeaderboardItem/LeaderboardItem'
 
@@ -29,7 +28,6 @@ export default connect(mapStateToProps)(class Leaderboard extends Component {
 						<LeaderboardItem user={ user } key={ user.id } calculateScore={ this.calculateScore } />
 					)) }
 				</div>
-				<AppBar />
 			</div>
 		)
 	}

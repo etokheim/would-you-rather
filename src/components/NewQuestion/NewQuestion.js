@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppBar from '../AppBar/AppBar'
 import { connect } from 'react-redux'
 import { handleAskQuestion } from '../../actions/questions'
 
@@ -46,7 +45,6 @@ export default connect(mapStateToProps)(class NewQuestion extends Component {
 				<p>or</p>
 				<textarea onChange={ (event) => this.handleInput(event, "optionTwoText") } value={ optionTwoText} /><br />
 				<button type="submit" onClick={ this.handleSubmitQuestion }>Ask question</button>
-				<AppBar />
 			</div>
 		)
 	}

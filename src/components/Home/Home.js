@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import AppBar from '../AppBar/AppBar'
 import toArray from '../../helpers/toArray'
 import Question from '../Question/Question'
 
@@ -59,7 +58,6 @@ export default connect(mapStateToProps)(class Home extends Component {
 						
 					</div>
 				</div>
-				<AppBar />
 			</div>
 		)
 	}

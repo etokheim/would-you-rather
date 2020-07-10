@@ -12,6 +12,7 @@ import NewQuestion from '../NewQuestion/NewQuestion'
 import Leaderboard from '../Leaderboard/Leaderboard'
 import handleInitialData from '../../actions/shared'
 import NotFound from '../404/NotFound'
+import AppBar from '../AppBar/AppBar'
 
 const mapStateToProps = ({ authenticatedUser }) => ({ authenticatedUser })
 
@@ -44,6 +45,7 @@ export default connect(mapStateToProps)(withRouter(({ dispatch, authenticatedUse
 
 	// Else, the user has logged in and we can display components that need user data
 	return (
+		<>
 		<Switch>
 			<Route exact path='/' component={Home} />
 			<Route exact path='/questions/:questionId' component={WouldYouRather} />
@@ -55,5 +57,8 @@ export default connect(mapStateToProps)(withRouter(({ dispatch, authenticatedUse
 				{/* If no match, render the 404 page */}
 				<Route component={NotFound} />
 		</Switch>
+
+			<AppBar />
+		</>
 	)
 }))

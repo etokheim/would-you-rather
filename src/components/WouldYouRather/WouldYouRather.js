@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppBar from '../AppBar/AppBar'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../../actions/questions'
 import './wouldYouRather.scss'
@@ -100,8 +99,6 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 									</div>
 								</div>
 							</div>
-							
-							<AppBar />
 						</div>
 					)
 				}
