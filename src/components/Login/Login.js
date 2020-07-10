@@ -11,27 +11,20 @@ function mapStateToProps({ users }) {
 	}
 }
 
-export default connect(mapStateToProps)(class Login extends Component {
-	static propTypes = {
-		users: PropTypes.object
+export default connect(mapStateToProps)(({ users, location, dispatch }) => {
+	const handleSetAuthenticatedUser = (user) => {
+		dispatch(setAuthenticatedUser(user.id))
 	}
 
-	handleSetAuthenticatedUser = (user) => {
-		this.props.dispatch(setAuthenticatedUser(user.id))
-	}
-
-	render() {
-		const { users } = this.props
-		return (
-			<div>
-				<h1>Login</h1>
-				<h3>Select user</h3>
-				{
-					toArray(users).map((user) => (
-						<LoginUserCard user={ user } key={ user.id } handleSetAuthenticatedUser={ this.handleSetAuthenticatedUser } />
-					))
-				}
-			</div>
-		)
-	}
+	return (
+		<div>
+			<h1>Login</h1>
+			<h3>Select user</h3>
+			{
+				toArray(users).map((user) => (
+					<LoginUserCard user={user} key={user.id} handleSetAuthenticatedUser={handleSetAuthenticatedUser} />
+				))
+			}
+		</div>
+	)
 })
