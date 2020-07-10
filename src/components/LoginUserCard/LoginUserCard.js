@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom'
 function LoginUserCard(props) {
 	const { user, handleSetAuthenticatedUser } = props
 	return (
-		<Link to='/' onClick={() => handleSetAuthenticatedUser(user)}>
-			<div>
-				<img src={user.avatarURL} alt='Profile' />
-				{ user.name }
-			</div>
-		</Link>
+		<button onClick={() => handleSetAuthenticatedUser(user)} type='button' style={{ border: 'none', display: 'block' }}>
+			<img src={user.avatarURL} alt='Profile' />
+			{ user.name }
+		</button>
 	)
 }
 
