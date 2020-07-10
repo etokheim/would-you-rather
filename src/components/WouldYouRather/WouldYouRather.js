@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../../actions/questions'
 import './wouldYouRather.scss'
 import { Redirect } from 'react-router-dom'
+import NotFound from '../404/NotFound'
 
 function mapStateToProps({ questions, authenticatedUser, dispatch, users }) {
 	return {
@@ -38,6 +39,9 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 		const { match: { params }, questions, authenticatedUser } = this.props;
 		const question = questions[params.questionId]
 
+		// Stop if the question doesn't exist
+		if(!question) return
+
 		// If optionOne contains user, she answered optionOne
 		// else if optionTwo contains user, she answered optionTwo
 		const answeredQuestion = question.optionOne.votes.find((vote) => vote === authenticatedUser)
@@ -54,6 +58,13 @@ export default connect(mapStateToProps)(class WouldYouRather extends Component {
 	render() {
 		const { match: { params }, questions, users } = this.props;
 		const question = questions[params.questionId]
+
+		if(!question) {
+			return (
+				<NotFound />
+			)
+		}
+
 		const author = users[question.author]
 		const { answeredQuestion } = this.state
 		const optionOneVotes = question.optionOne.votes.length
