@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import {
 	Switch, Route, Redirect, withRouter
 } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import './App.scss'
 import Login from '../Login/Login'
 import Home from '../Home/Home'
