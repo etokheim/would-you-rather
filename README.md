@@ -1,5 +1,7 @@
 # Would you rather
 
+_As the point of making this app was to familiarize myself with React and Redux, I haven't prioritized styling or created backend for storage yet. The app works perfectly, but doesn't persist the data and looks pretty bad._
+
 A game of would you rather questions made with React and Redux.
 
 Answer daring questions of what you'd rather. You must answer the questions or risk sitting on the bottom of the leaderboard. Your score increase for every answered question, but you'll get even more points for asking new questions. Have fun!
